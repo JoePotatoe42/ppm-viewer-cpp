@@ -25,11 +25,17 @@ inline sf::Texture generateTexture(const unsigned int width, const unsigned int 
     return texture;
 }
 
+inline std::string generateWindowName(const std::string& file_address)
+{
+    std::filesystem::path p(file_address);
+    return p.stem().string();
+}
+
 
 // create the window
 inline void createWindow(const unsigned int width, const unsigned int height, const std::string& name, const std::vector<RGB>& data)
 {
-    sf::RenderWindow window(sf::VideoMode({width,height}),name);
+    sf::RenderWindow window(sf::VideoMode({width,height}), generateWindowName(name));
     sf::Texture texture = generateTexture(width,height,data);
     sf::Sprite sprite(texture);
     
